@@ -1,0 +1,22 @@
+.footer {
+  background-color: #2a2a2a; /* Màu nền tối */
+  color: white; /* Màu chữ sáng */
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer__content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer a {
+  color: #76c7c0; /* Màu xanh nhẹ cho liên kết */
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline; /* Tạo hiệu ứng khi hover vào liên kết */
+}
