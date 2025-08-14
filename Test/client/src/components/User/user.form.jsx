@@ -3,7 +3,9 @@ import { useState } from 'react';
 import { createUserAPI } from "../../services/api.service";
 
 
-const UserForm = () => {
+const UserForm = (props) => {
+    const { loadUser } = props;
+
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -19,6 +21,7 @@ const UserForm = () => {
                 description: "Tao user thanh cong"
             })
             resetAndCloseModal();
+            await loadUser(); // Call the loadUser function to refresh the user list
         } else {
             notification.error({
                 message: "Error Create User",
