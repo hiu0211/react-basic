@@ -8,7 +8,7 @@ const UpdateUserModal = (props) => {
     const [fullName, setFullName] = useState("");
     const [phone, setPhone] = useState("");
 
-    const {isModalUpdateOpen, setIsModalUpdateOpen, dataUpdate, setDataUpdate, loadUser} = props;
+    const { isModalUpdateOpen, setIsModalUpdateOpen, dataUpdate, setDataUpdate, loadUser } = props;
 
     useEffect(() => {
         if (dataUpdate) {
@@ -24,9 +24,9 @@ const UpdateUserModal = (props) => {
             message.success({
                 content: "Cập nhật user thành công"
             });
-            
+
             resetAndCloseModal();
-            await loadUser(); 
+            await loadUser();
 
         } else {
             notification.error({
@@ -70,7 +70,7 @@ const UpdateUserModal = (props) => {
                         onChange={(e) => setFullName(e.target.value)}
                     />
                 </div>
-                
+
                 <div>
                     <span>Phone</span>
                     <Input

@@ -1,7 +1,10 @@
-import { Table } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Popconfirm, Table, notification } from 'antd';
 import { useState } from 'react';
 import UpdateUserModal from './update.user.modal';
+// import ViewUserDetail from './view.user.detail';
+import { deleteUserAPI } from '../../services/api.service';
+import React from 'react';
 
 const UserTable = (props) => {
   const { dataUser, loadUser } = props;
@@ -39,11 +42,35 @@ const UserTable = (props) => {
               setIsModalUpdateOpen(true);
             }}
             style={{ cursor: "pointer", color: "blue" }} />
-          <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
+          <Popconfirm
+            title="Bạn chắc chắn muốn xóa user này ?"
+            onConfirm={() => { handleDeleteUser(record._id); }}
+            okText="Yes"
+            cancelText="No"
+            placement="left"
+          >
+            <DeleteOutlined style={{ cursor: "pointer", color: "red" }} />
+          </Popconfirm>
         </div>
       ),
     },
   ];
+
+  const handleDeleteUser = async (id) => {
+    const res = await deleteUserAPI(id);
+    if (res.data) {
+      notification.success({
+        message: "Xóa user thành công",
+      });
+      await loadUser();
+
+    } else {
+      notification.error({
+        message: "Xóa user thất bại",
+        description: JSON.stringify(res.message),
+      });
+    }
+  }
 
   return (
     <>
@@ -52,7 +79,7 @@ const UserTable = (props) => {
         dataSource={dataUser}
         rowKey={"_id"}
       />
-      
+
       <UpdateUserModal
         isModalUpdateOpen={isModalUpdateOpen}
         setIsModalUpdateOpen={setIsModalUpdateOpen}
