@@ -22,6 +22,7 @@ const UserForm = (props) => {
             })
             resetAndCloseModal();
             await loadUser(); // Call the loadUser function to refresh the user list
+
         } else {
             notification.error({
                 message: "Error Create User",
@@ -48,7 +49,7 @@ const UserForm = (props) => {
             </div>
 
             <Modal
-                title="Basic Modal"
+                title="Create User"
                 open={isModalOpen}
                 onOk={() => handleSubmitBtn()}
                 onCancel={() => resetAndCloseModal()}
