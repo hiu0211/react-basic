@@ -1,4 +1,4 @@
-import { Button, Input, notification, Modal } from 'antd';
+import { Button, Input, notification, Modal, message } from 'antd';
 import { useState } from 'react';
 import { createUserAPI } from "../../services/api.service";
 
@@ -16,10 +16,7 @@ const UserForm = (props) => {
     const handleSubmitBtn = async () => {
         const res = await createUserAPI(fullName, email, password, phone);
         if (res.data) {
-            notification.success({
-                message: "Create User",
-                description: "Tao user thanh cong"
-            })
+            message.success("Tạo user thành công");
             resetAndCloseModal();
             await loadUser(); // Call the loadUser function to refresh the user list
 
